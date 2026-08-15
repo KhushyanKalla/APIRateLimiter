@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Rate Limiter - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Notification Toast -->
+        <div id="toast" class="toast hidden"></div>
+
+        <!-- Auth Section -->
+        <div id="auth-section" class="section glass-panel fade-in">
+            <div class="auth-box">
+                <h1 class="logo-text">API Vault</h1>
+                <div class="tab-switcher">
+                    <button id="tab-login" class="active" onclick="switchAuthTab('login')">Login</button>
+                    <button id="tab-signup" onclick="switchAuthTab('signup')">Sign Up</button>
+                </div>
+                
+                <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" id="login-email" required placeholder="you@example.com">
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="login-password" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn-primary">Access Dashboard</button>
+                </form>
+
+                <form id="signup-form" class="auth-form hidden" onsubmit="handleSignup(event)">
+                    <div class="input-group">
+                        <label>Name</label>
+                        <input type="text" id="signup-name" required placeholder="John Doe">
+                    </div>
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" id="signup-email" required placeholder="you@example.com">
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="signup-password" required placeholder="••••••••" minlength="4">
+                    </div>
+                    <button type="submit" class="btn-primary">Create Account</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard-section" class="section hidden fade-in">
+            <nav class="navbar glass-panel">
+                <h1 class="logo-text">API Vault</h1>
+                <div class="nav-right">
+                    <span id="user-display"></span>
+                    <button onclick="handleLogout()" class="btn-secondary">Logout</button>
+                </div>
+            </nav>
+
+            <main class="dashboard-content">
+                <div class="dashboard-header">
+                    <div>
+                        <h2>Your APIs</h2>
+                        <p class="subtitle">Manage and generate keys for your projects.</p>
+                    </div>
+                    <button onclick="openModal('create-api-modal')" class="btn-primary">+ Create New API</button>
+                </div>
+
+                <div id="api-list" class="api-grid">
+                    <!-- APIs will be dynamically populated here -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="create-api-modal" class="modal-overlay hidden">
+        <div class="modal glass-panel fade-in">
+            <div class="modal-header">
+                <h3>Create New API</h3>
+                <button onclick="closeModal('create-api-modal')" class="close-btn">&times;</button>
+            </div>
+            <form onsubmit="handleCreateAPI(event)">
+                <div class="input-group">
+                    <label>API Name</label>
+                    <input type="text" id="new-api-name" required placeholder="e.g. Production Billing" minlength="3">
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">Create API</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

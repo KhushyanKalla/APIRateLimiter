@@ -1,0 +1,6 @@
+User: id (Integer, PK, autoincrement), name (String), email (String, unique), password_hash (String), is_active (Bool), tier (Enum), created_at (DateTime, default=now)
+API: id (Integer, PK, autoincrement), user_id (FK→User), name (String), created_at (DateTime, default=now)
+APIKey: id (UUID, PK), api_id (FK→API), key_value (String, hashed), is_active (Bool), created_at (DateTime, default=now), last_used_at (DateTime, nullable)
+RequestLog: id (BigInt, PK, autoincrement), api_key_id (FK→APIKey), timestamp (DateTime, default=now)
+
+System design + schema done — solid work, genuinely. Tumne khud socha, galtiyan ki, corrections li — yehi process hai jo actually seekhata hai.
